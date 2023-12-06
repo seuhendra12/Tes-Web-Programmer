@@ -51,6 +51,38 @@
               </li>
             </ul>
           </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-chart-line"></i>
+              <p>
+                Manajemen Transaksi
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ url('peminjaman') }}" class="nav-link {{ Request::is('peminjaman') ? 'active' : '' }}">
+                  <i class="nav-icon fas fa-money-bill"></i>
+                  <p>Transaksi Peminjaman</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url('pengembalian') }}" class="nav-link {{ Request::is('pengembalian') ? 'active' : '' }}">
+                  <i class="nav-icon fas fa-money-bill"></i>
+                  <p>Transaksi Pengembalian</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-header">SETTINGS</li>
+          <li class="nav-item">
+            <a href="{{ url('/logout') }}" class="nav-link" onclick="return confirm('Apakah Anda yakin ingin keluar?')">
+              <i class="nav-icon fas fa-power-off"></i>
+              <p>
+                Logout
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
