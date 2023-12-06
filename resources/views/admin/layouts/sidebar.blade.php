@@ -66,12 +66,6 @@
                   <p>Transaksi Peminjaman</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="{{ url('pengembalian') }}" class="nav-link {{ Request::is('pengembalian') ? 'active' : '' }}">
-                  <i class="nav-icon fas fa-money-bill"></i>
-                  <p>Transaksi Pengembalian</p>
-                </a>
-              </li>
             </ul>
           </li>
           <li class="nav-header">SETTINGS</li>

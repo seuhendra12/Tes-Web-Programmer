@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('plat');
             $table->decimal('harga_sewa', 10, 2);
             $table->string('gambar')->nullable();
+            $table->boolean('status')->nullable();
             $table->timestamps();
         });
     }
