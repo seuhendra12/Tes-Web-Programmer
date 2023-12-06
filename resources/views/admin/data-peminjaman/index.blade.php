@@ -34,10 +34,10 @@
 
   <div class="card card-outline card-success mt-3">
     <div class="card-header">
-      <form action="/mobil" method="GET">
+      <form action="/peminjaman" method="GET">
         <input type="text" name="search" id="liveSearch" class="form-control w-25 float-left" placeholder="Search..." onchange="this.form.submit()">
       </form>
-      <a href="/mobil" class=" ml-2 btn btn-secondary" title="reset"> <i class="fas fa-sync-alt" title="reset"></i></a>
+      <a href="/peminjaman" class=" ml-2 btn btn-secondary" title="reset"> <i class="fas fa-sync-alt" title="reset"></i></a>
     </div>
 
     <div class="card-body">
@@ -52,6 +52,7 @@
                 <th>Tanggal Sewa</th>
                 <th>Tanggal Dikembalikan</th>
                 <th>Harga Sewa</th>
+                <th>Status </th>
                 <th>Aksi</th>
               </tr>
             </thead>
@@ -65,8 +66,15 @@
                 <td>{{$item->tanggal_selesai ?? '-'}}</td>
                 <td>{{$item->total_harga ? 'Rp ' . number_format($item->total_harga, 0, ',', '.') : '-' }}</td>
                 <td>
-                  <a href="mobil/{{$item->id}}/edit" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></a>
-                  <form action="{{ url('mobil/'.$item->id) }}" method="POST" style="display:inline">
+                  @if($item->status == 1)
+                  <div class="badge bg-success">Disewa</div>
+                  @else
+                  <div class="badge bg-danger">Dikembalikan</div>
+                  @endif
+                </td>
+                <td>
+                  <a href="peminjaman/{{$item->id}}/edit" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></a>
+                  <form action="{{ url('peminjaman/'.$item->id) }}" method="POST" style="display:inline">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus?')"><i class="fas fa-trash"></i></button>

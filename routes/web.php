@@ -38,3 +38,4 @@ Route::middleware(['role:admin', 'auth'])->group(function () {
 Route::get('/',[FrontendController::class,'index']);
 Route::get('/sewa/{id}', [FrontendController::class,'peminjaman']);
 Route::post('/konfirmasiPeminjaman', [FrontendController::class,'konfirmasiPeminjaman']);
+Route::get('/history/{id}', [FrontendController::class,'history']);

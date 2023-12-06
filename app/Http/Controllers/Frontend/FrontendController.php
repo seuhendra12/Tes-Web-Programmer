@@ -52,4 +52,10 @@ class FrontendController extends Controller
     Session::flash('success', 'Transaksi berhasil');
     return redirect('/');
   }
+
+  public function history($id) {
+    $historis = Peminjaman::where('user_id',$id)->get();
+
+    return view('user.history', compact('historis'));
+  }
 }

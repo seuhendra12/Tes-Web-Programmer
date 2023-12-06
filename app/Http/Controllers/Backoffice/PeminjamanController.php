@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backoffice;
 use App\Http\Controllers\Controller;
 use App\Models\Peminjaman;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class PeminjamanController extends Controller
 {
@@ -14,10 +15,9 @@ class PeminjamanController extends Controller
     $search = $request->input('search');
     if ($search) {
       $query->where(function ($query) use ($search) {
-        $query->where('merek', 'LIKE', "%$search%")
-          ->orWhere('model', 'LIKE', "%$search%")
-          ->orWhere('plat', 'LIKE', "%$search%")
-          ->orWhere('harga_sewa', 'LIKE', "%$search%");
+        $query->WhereHas('user', function ($query) use ($search) {
+          $query->where('nama', 'LIKE', "%$search%");
+        });
       });
     }
 
@@ -25,44 +25,20 @@ class PeminjamanController extends Controller
     return view('admin.data-peminjaman.index', compact('peminjamans'));
   }
 
-  /**
-   * Show the form for creating a new resource.
-   */
-  public function create()
-  {
-    //
-  }
-
-  /**
-   * Store a newly created resource in storage.
-   */
-  public function store(Request $request)
-  {
-    //
-  }
-
-  /**
-   * Display the specified resource.
-   */
-  public function show(string $id)
-  {
-    //
-  }
-
-  /**
-   * Show the form for editing the specified resource.
-   */
   public function edit(string $id)
   {
-    //
+    $peminjaman = Peminjaman::findOrFail($id);
+    return view ('admin.data-peminjaman.edit', compact('peminjaman'));
   }
 
-  /**
-   * Update the specified resource in storage.
-   */
   public function update(Request $request, string $id)
   {
-    //
+    $peminjaman = Peminjaman::findOrFail($id);
+    $peminjaman->update([
+      'status' => $request->input('status')
+    ]);
+    Session::flash('success', 'Status berhasil diubah');
+    return redirect('/peminjaman');
   }
 
   /**
@@ -70,6 +46,9 @@ class PeminjamanController extends Controller
    */
   public function destroy(string $id)
   {
-    //
+    $peminjaman = Peminjaman::findOrFail($id);
+    $peminjaman->delete();
+    Session::flash('success', 'Data Peminjaman berhasil dihapus');
+    return redirect('/peminjaman');
   }
 }

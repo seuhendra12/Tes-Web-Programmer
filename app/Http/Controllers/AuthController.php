@@ -44,14 +44,20 @@ class AuthController extends Controller
       } elseif ($user->role == 'user') {
         return redirect()->intended('/');
       }
+    } else {
+      $validator->errors()->add('password', 'Password salah. Silakan coba lagi.');
+
+      return redirect()->back()->withErrors($validator)->withInput();
     }
   }
 
-  public function register() {
+  public function register()
+  {
     return view('auth.register.index');
   }
 
-  public function registerProses(Request $request) {
+  public function registerProses(Request $request)
+  {
     $validator = Validator::make($request->all(), [
       'no_sim' => 'required|unique:users',
       'nama' => 'required',
@@ -85,10 +91,10 @@ class AuthController extends Controller
   }
 
   function logout(Request $request)
-    {
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-        return redirect('/login');
-    }
+  {
+    Auth::logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+    return redirect('/login');
+  }
 }

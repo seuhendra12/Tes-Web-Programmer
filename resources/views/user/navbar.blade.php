@@ -58,21 +58,14 @@
             <p class="text-dark fw-bold">SIM ID : {{ Auth::user()->no_sim }}</p>
           </div>
         </div>
-        @if(Auth::user()->role === 'SuperAdmin' || Auth::user()->role === 'Admin' || Auth::user()->role === 'Kelurahan')
-        <div class="mt-4 text-center">
-          <a href="{{url('dashboard')}}" class="btn btn-success rounded-0"><i class="fas fa-home me-2"></i>Halaman Dashboard</a>
-        </div>
-        @else
         <div class="row mt-4">
           <div class="col text-center">
             <div class="btn-group">
-              <a href="/profile/{{ Auth::user()->id }}" class="btn btn-success rounded-0 fw-semibold me-2"><i class="fas fa-eye me-2"></i>Detail</a>
-              <a href="/histori-transaksi" class="btn btn-primary text-white rounded-0 fw-semibold me-2"><i class="fa-solid fa-clock-rotate-left me-2"></i>Histori</a>
+              <a href="/history/{{ Auth::user()->id }}" class="btn btn-primary text-white rounded-0 fw-semibold me-2"><i class="fa-solid fa-clock-rotate-left me-2"></i>Histori</a>
               <a href="/logout" class="btn btn-danger rounded-0 fw-semibold" onclick="return confirm('Apakah yakin ingin keluar ?')"><i class="fas fa-power-off me-2"></i>Keluar</a>
             </div>
           </div>
         </div>
-        @endif
       </div>
     </div>
   </div>
