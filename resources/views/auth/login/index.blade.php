@@ -1,9 +1,37 @@
 @extends('auth.layouts.index')
+@section('title', 'Halaman Login')
 @section('content')
 <div class="card card-outline card-success">
   <div class="text-center mt-2 mb-3">
     <img src="{{ asset('img/logo.png') }}" class="img-logo" width="140px" height="130px" alt="">
   </div>
+
+  @if(Session::has('success'))
+  <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content text-center w-50 mx-auto">
+        <div class="modal-body text-center">
+          <div class="mb-5">
+            <img alt="Logo" src="{!! asset('/img/success.png') !!}" style="width: 50%;" />
+            <H5 class="mt-1 fw-bold">SUKSES</H5>
+          </div class="mb-2">
+          {{ Session::get('success') }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var myModal = new bootstrap.Modal(document.getElementById('successModal'));
+      myModal.show();
+
+      // Menghilangkan modal setelah 3 detik
+      setTimeout(function() {
+        myModal.hide();
+      }, 1000);
+    });
+  </script>
+  @endif
 
   <div class="text-center">
     <a href="{{ url('/login') }}" class="text-login h3"><b>Halaman Login</b></a>

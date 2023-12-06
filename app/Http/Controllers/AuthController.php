@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -43,5 +45,42 @@ class AuthController extends Controller
         return redirect()->intended('/');
       }
     }
+  }
+
+  public function register() {
+    return view('auth.register.index');
+  }
+
+  public function registerProses(Request $request) {
+    $validator = Validator::make($request->all(), [
+      'no_sim' => 'required|unique:users',
+      'nama' => 'required',
+      'no_telp' => 'required',
+      'alamat' => 'required',
+      'password' => [
+        'required',
+        'string',
+        'min:8',
+        'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
+      ]
+    ]);
+
+    if ($validator->fails()) {
+      return redirect('/register')
+        ->withErrors($validator)
+        ->withInput();
+    }
+
+    User::create([
+      'no_sim' => $request->input('no_sim'),
+      'nama' => $request->input('nama'),
+      'alamat' => $request->input('alamat'),
+      'no_telp' => $request->input('no_telp'),
+      'password' => Hash::make($request->input('password')),
+    ]);
+
+    Session::flash('success', 'Akun berhasil dibuat. Silakan login');
+
+    return redirect('/login');
   }
 }
