@@ -19,11 +19,13 @@ class MobilSeeder extends Seeder
         'model' => 'Camry',
         'plat' => 'D 1234 AB',
         'harga_sewa' => 250000,
+        'gambar' => '1701850798.jpg'
       ], [
         'merek' => 'Honda',
         'model' => 'Civic',
         'plat' => 'B 5678 CD',
         'harga_sewa' => 300000,
+        'gambar' => '1701850826.jpg'
       ],
     ];
 
@@ -33,6 +35,7 @@ class MobilSeeder extends Seeder
         'model' => $mobil['model'],
         'plat' => $mobil['plat'],
         'harga_sewa' => $mobil['harga_sewa'],
+        'gambar' => $mobil['gambar'],
         'created_at' => \Carbon\Carbon::now(),
         'updated_at' => \Carbon\Carbon::now(),
       ]);

@@ -27,7 +27,7 @@
 
   <section class="container bg-aliceblue py-5">
     <div class="card w-75 mx-auto bg-light mt-5">
-      <div class="card-header text-center bg-green rounded-0">
+      <div class="card-header text-center bg-dark rounded-0">
         <span class="fw-bold text-white">Histori Transaksi</span>
       </div>
       <div class="card">
@@ -61,7 +61,7 @@
                   </td>
                 </tr>
                 @empty
-                <td colspan="4" class="text-center bg-danger">-- Data Tidak Ada --</td>
+                <td colspan="6" class="text-center bg-danger">-- Data Tidak Ada --</td>
                 @endforelse
               </tbody>
             </table>
