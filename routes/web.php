@@ -19,3 +19,4 @@ Route::get('/', function () {
 });
 
 Route::get('/login', [AuthController::class,'index'])->name('login');
+Route::post('loginProses',[AuthController::class,'loginProses']);

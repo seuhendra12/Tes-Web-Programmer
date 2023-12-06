@@ -17,13 +17,13 @@ class AuthController extends Controller
   public function loginProses(Request $request)
   {
     $validator = Validator::make($request->all(), [
-      'nik' => 'required',
+      'no_sim' => 'required',
       'password' => [
         'required',
         'string',
         'min:8',
         'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
-      ],
+      ]
     ]);
 
     if ($validator->fails()) {
@@ -42,10 +42,6 @@ class AuthController extends Controller
       } elseif ($user->role == 'user') {
         return redirect()->intended('/');
       }
-    } else {
-      return redirect()->back()->withErrors([
-        'email' => 'Failed to save login history.',
-      ]);
     }
   }
 }
