@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Backoffice\DashboardController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -24,4 +25,6 @@ Route::post('/loginProses',[AuthController::class,'loginProses']);
 Route::get('/register',[AuthController::class,'register']);
 Route::post('/registerProses', [AuthController::class,'registerProses']);
 
-
+Route::middleware(['role:admin', 'auth'])->group(function () {
+    Route::get('/dashboard',[DashboardController::class,'index']);
+});

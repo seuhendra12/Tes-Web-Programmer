@@ -33,7 +33,7 @@ class AuthController extends Controller
     }
 
     $credentials = [
-      'no_sim' => $request->nik,
+      'no_sim' => $request->no_sim,
       'password' => $request->password,
     ];
 
