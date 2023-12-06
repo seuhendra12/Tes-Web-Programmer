@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Backoffice\DashboardController;
+use App\Http\Controllers\Backoffice\PenggunaController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -27,4 +28,5 @@ Route::post('/registerProses', [AuthController::class,'registerProses']);
 
 Route::middleware(['role:admin', 'auth'])->group(function () {
     Route::get('/dashboard',[DashboardController::class,'index']);
+    Route::resource('/pengguna',PenggunaController::class);
 });
