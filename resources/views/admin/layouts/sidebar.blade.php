@@ -32,26 +32,21 @@
                   <p>Pengguna</p>
                 </a>
               </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-database"></i>
+              <p>
+                Manajemen Mobil
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ url('penduduk') }}" class="nav-link {{ Request::is('penduduk') ? 'active' : '' }}">
-                  <i class="nav-icon fas fa-users"></i>
-                  <p>Penduduk</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ url('jenis-surat') }}" class="nav-link {{ Request::is('jenis-surat') ? 'active' : '' }}">
-                  <i class="nav-icon fas fa-file"></i>
-                  <p>
-                    Surat
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ url('pengajuan') }}" class="nav-link {{ Request::is('pengajuan') ? 'active' : '' }}">
-                  <i class="nav-icon fas fa-tasks"></i>
-                  <p>
-                    Pengajuan
-                  </p>
+                <a href="{{ url('mobil') }}" class="nav-link {{ Request::is('mobil') ? 'active' : '' }}">
+                  <i class="nav-icon fas fa-car"></i>
+                  <p>Data Mobil</p>
                 </a>
               </li>
             </ul>
